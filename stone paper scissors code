@@ -1,1 +1,34 @@
+import random
 
+def get_computer_choice():
+    return random.choice(["stone", "paper", "scissors"])
+
+def get_winner(player, computer):
+    if player == computer:
+        return "It's a tie!"
+    elif (player == "stone" and computer == "scissors") or \
+         (player == "paper" and computer == "stone") or \
+         (player == "scissors" and computer == "paper"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+print("===== Stone   Paper   Scissors  Game =====")
+print("Enter your choice (stone / paper / scissors)")
+
+while True:
+    player_choice = input("Your choice: ").lower()
+    if player_choice not in ["stone", "paper", "scissors"]:
+        print("Invalid input! Please enter stone, paper, or scissors.")
+        continue
+
+    computer_choice = get_computer_choice()
+    print(f"Computer chose: {computer_choice}")
+
+    result = get_winner(player_choice, computer_choice)
+    print(result)
+
+    play_again = input("Do you want to play again? (yes/no): ").lower()
+    if play_again != "yes":
+        print("Thanks for playing!")
+        break
